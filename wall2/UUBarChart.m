@@ -76,6 +76,7 @@
         _yValueMax = _chooseRange.max;
         _yValueMin = _chooseRange.min;
     }
+    
 
     float level = (_yValueMax-_yValueMin) /4.0;
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
