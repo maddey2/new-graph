@@ -13,6 +13,8 @@
 @interface UUBarChart ()
 {
     UIScrollView *myScrollView;
+    
+    UIView *view1,*view2,*view3;
 }
 @end
 
@@ -29,10 +31,29 @@
         // graph scroll view
         myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(30, 0, frame.size.width-30, frame.size.height)];
         
+        view1 = [[UIView alloc]initWithFrame:CGRectMake(-myScrollView.frame.size.width,0, myScrollView.frame.size.width, myScrollView.frame.size.height)];
         
-        myScrollView.userInteractionEnabled=NO;
+       view2 = [[UIView alloc]initWithFrame:CGRectMake(0,0, myScrollView.frame.size.width, myScrollView.frame.size.height)];
+        
+        view3 = [[UIView alloc]initWithFrame:CGRectMake(myScrollView.frame.size.width,0, myScrollView.frame.size.width, myScrollView.frame.size.height)];
+        
+        view1.backgroundColor = [UIColor clearColor];
+
+        view2.backgroundColor = [UIColor clearColor];
+
+        view3.backgroundColor = [UIColor clearColor];
+        
+        [myScrollView addSubview:view1];
+
+        [myScrollView addSubview:view2];
+
+        [myScrollView addSubview:view3];
+
+        
+        
+        myScrollView.userInteractionEnabled=YES;
        
-           // myScrollView.showsHorizontalScrollIndicator = NO;
+            myScrollView.showsHorizontalScrollIndicator = NO;
         
             //myScrollView.userInteractionEnabled=NO;
 
@@ -85,7 +106,7 @@
     for (int i=0; i<5; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, self.frame.size.width, UULabelHeight)];
         label.textAlignment = NSTextAlignmentLeft;
-        label.frame = CGRectMake(label.frame.origin.x+2,label.frame.origin.y+15,label.frame.size.width,label.frame.size.height);
+        label.frame = CGRectMake(label.frame.origin.x+10,label.frame.origin.y+15,label.frame.size.width,label.frame.size.height);
         
         switch (i) {
             case 0:
@@ -132,9 +153,9 @@
 {
     CALayer *layer = [CALayer layer];
     
-    layer.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+label.frame.size.height, label.frame.size.width, 1.0);
+    layer.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+label.frame.size.height, label.frame.size.width, 2.0);
     
-    layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
+    layer.backgroundColor = [[UIColor colorWithRed:(204/255.0) green:(204/255.0) blue:(204/255.0) alpha:1.0 ] CGColor];
     
     [self.layer addSublayer:layer];
 }
@@ -227,7 +248,7 @@
                 
                 bar.barColor = UUBlue;
                 bar.grade = grade;
-                [myScrollView addSubview:bar];
+                [view2 addSubview:bar];
             }
             else
             {
@@ -243,7 +264,7 @@
                     
                     bar.barColor = UUGreen;
                     bar.grade = grade;
-                    [myScrollView addSubview:bar];
+                    [view2 addSubview:bar];
                 }
                 else
                 {
@@ -257,7 +278,7 @@
                     
                     bar.barColor = UUBlue;
                     bar.grade = grade;
-                    [myScrollView addSubview:bar];
+                    [view2 addSubview:bar];
                 }
 
             }
@@ -277,7 +298,7 @@
     
     [self bringSubviewToFront:myScrollView];
     
-    
+    [myScrollView scrollRectToVisible:view1.frame animated:YES];
 }
 
 -(CGFloat)getDistanceFactorOne
@@ -328,13 +349,13 @@
         }
         case 667:
         {
-            return 8.0;
+            return 9.0;
             
             break;
         }
         case 736:
         {
-            return 10.0;
+            return 13.0;
             
             break;
         }

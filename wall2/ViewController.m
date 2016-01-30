@@ -65,38 +65,10 @@
    
         [self dateChange];
     
-    switch ((int)[UIScreen mainScreen].bounds.size.height) {
-        case 480:
-        {
-            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(4,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                                   withStyle:UUChartBarStyle];
-            break;
-        }
-        case 568:
-        {
-            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(4,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                                   withStyle:UUChartBarStyle];
-            break;
-        }
-        case 667:
-        {
-            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(7,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                                   withStyle:UUChartBarStyle];
-            break;
-        }
-        case 736:
-        {
-            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(7,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                                   withStyle:UUChartBarStyle];
-            
-            break;
-        }
-        default:
-            break;
-    }
-    
 
-        
+    
+        [self setFrame];
+    
         chart.layer.borderColor = [UIColor grayColor].CGColor;
         chart.layer.borderWidth = 1.0f;
         [chart showInView:self.view];
@@ -109,6 +81,39 @@
 {
     
         sevenlabel.frame = CGRectMake(sevenlabel.frame.origin.x-8, sevenlabel.frame.origin.y, sevenlabel.frame.size.width, sevenlabel.frame.size.height);
+}
+
+-(void)setFrame
+{
+    switch ((int)[UIScreen mainScreen].bounds.size.height) {
+        case 480:
+        {
+            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(-1,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
+                                                   withStyle:UUChartBarStyle];
+            break;
+        }
+        case 568:
+        {
+            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(-1,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
+                                                   withStyle:UUChartBarStyle];
+            break;
+        }
+        case 667:
+        {
+            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(-1,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
+                                                   withStyle:UUChartBarStyle];
+            break;
+        }
+        case 736:
+        {
+            chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(-1,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
+                                                   withStyle:UUChartBarStyle];
+            
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 -(void)dateChange
@@ -156,8 +161,7 @@
     
     
     
-    chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(7,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                           withStyle:UUChartBarStyle];
+    [self setFrame];
     
     chart.layer.borderColor = [UIColor grayColor].CGColor;
     chart.layer.borderWidth = 1.0f;
@@ -178,8 +182,7 @@
     
     NSDateComponents *dateComp = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:firstdate];
  
-    chart = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(7,self.view.frame.size.height- 270,[UIScreen mainScreen].bounds.size.width+5, 265) withSource:self
-                                           withStyle:UUChartBarStyle];
+    [self setFrame];
     
     
     chart.layer.borderColor = [UIColor grayColor].CGColor;
